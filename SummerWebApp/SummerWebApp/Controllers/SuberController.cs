@@ -1,4 +1,5 @@
 ﻿using SummerWebApp.Models;
+using SummerWebApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,22 @@ namespace SummerWebApp.Controllers
         // GET: Suber
         public ActionResult Index(int id)
         {
-            var suber = new Suber() { Id = 5 };
-            //return View(suber);
-            return Content("sameer "+id);
+            var suber = new Suber() { Id = 5, Name = "Sam" };
+            var customers = new List<Customer>
+            {
+                new Customer{ Name = "One"},
+                new Customer{ Name = "Two"}
+            };
+
+            var viewModel = new RandomSuberViewModel
+            {
+                Suber = suber,
+                Customers = customers
+            };
+
+            return View(ViewModel);
+
+            //return Content("sameer "+id);
             //return HttpNotFound();
             //return new EmptyResult();
             //return RedirectToAction("Index", "Home",new { page = 1, sortBy ="name"});
@@ -35,6 +49,16 @@ namespace SummerWebApp.Controllers
                 sortBy = "name";
 
             return Content(String.Format("pageIndex={0}&sortB={1}",pageIndex,sortBy)); 
+        }
+
+        public ActionResult NewFunction()
+        {
+            var suber = new Suber() { Id = 1, Name = "Sameer" };
+
+            var viewResult = new ViewResult();
+           // viewResult.ViewData.Model
+
+            return View(suber);
         }
 
         [Route("suber/released/{year}/{month:regex(\\d{2}):range(1, 12)}")]
