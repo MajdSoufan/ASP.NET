@@ -4,10 +4,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Suber.Name</h2>
-<ul>
-    @foreach (var customer in Model.Customers)
-    {   
-        <li>@customer.Name</li>
-    }
-</ul>
+@{
+    var className = Model.Customers.Count > 0 ? "popular" : null;
+}
+<h2 class="@className">@Model.Suber.Name</h2>
+
+@if (Model.Customers.Count == 0)
+{
+    <text>No one has rented Suber.</text>
+}
+else
+{
+    <ul>
+        @foreach (var customer in Model.Customers)
+        {
+            <li>@customer.Name</li>
+        }   
+    </ul>
+}

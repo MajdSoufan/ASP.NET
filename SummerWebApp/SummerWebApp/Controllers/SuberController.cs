@@ -12,9 +12,9 @@ namespace SummerWebApp.Controllers
     public class SuberController : Controller
     {
         // GET: Suber
-        public ActionResult Index(int id)
+        public ActionResult Index()
         {
-            var suber = new Suber() { Id = 5, Name = "Sam" };
+            var suber = new Suber { Id = 5, Name = "Sam" };
             var customers = new List<Customer>
             {
                 new Customer{ Name = "One"},
@@ -27,7 +27,7 @@ namespace SummerWebApp.Controllers
                 Customers = customers
             };
 
-            return View(ViewModel);
+            return View(viewModel);
 
             //return Content("sameer "+id);
             //return HttpNotFound();
